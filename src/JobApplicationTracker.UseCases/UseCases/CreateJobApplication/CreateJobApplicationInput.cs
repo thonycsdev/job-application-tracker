@@ -1,12 +1,14 @@
-﻿using System;
+﻿using MediatR;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace JobApplicationTracker.Application.UseCases.CreateJobApplication
 {
-    public class CreateJobApplicationInput
+    public class CreateJobApplicationInput : IRequest<CreateJobApplicationOutput>
     {
         public CreateJobApplicationInput(string name, string description, string company, string location, string notes)
         {

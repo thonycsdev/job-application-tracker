@@ -24,7 +24,7 @@ namespace JobApplicationTracker.Tests.UseCases.CreateJobApplication
             var dummyData = _jobApplicationFixture.CreateValidJobApplication();
             var inputDTO = new CreateJobApplicationInput(dummyData.Name, dummyData.Description, dummyData.Company, dummyData.Location, dummyData.Notes);
 
-            var result = await useCase.Create(inputDTO);
+            var result = await useCase.Handle(inputDTO, CancellationToken.None);
 
             result.Should().NotBeNull();
             result.Id.Should().NotBe(Guid.Empty);

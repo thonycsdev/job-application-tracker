@@ -1,10 +1,10 @@
 ﻿using JobApplicationTracker.Application.UseCases.CreateJobApplication;
+using MediatR;
 
 namespace JobApplicationTracker.Application.Interfaces
 {
-    public interface ICreateJobApplication
+    public interface ICreateJobApplication : IRequestHandler<CreateJobApplicationInput, CreateJobApplicationOutput>
     {
-        Task<CreateJobApplicationOutput> Create(CreateJobApplicationInput createJobApplicationInput);
         Task<CreateJobApplicationOutput> GetById(Guid id);
     }
 }
