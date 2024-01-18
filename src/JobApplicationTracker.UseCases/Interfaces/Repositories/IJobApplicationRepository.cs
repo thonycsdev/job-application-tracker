@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JobApplicationTracker.Application.Interfaces
+namespace JobApplicationTracker.Application.Interfaces.Repositories
 {
     public interface IJobApplicationRepository : IGenericRepository<JobApplication>
     {
