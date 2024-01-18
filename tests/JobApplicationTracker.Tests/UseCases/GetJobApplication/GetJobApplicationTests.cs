@@ -67,5 +67,19 @@ namespace JobApplicationTracker.Tests.UseCases.GetCategory
 
 
         }
+        [Fact(DisplayName = nameof(WhenPassedAValidGuidTheResultMustBeValid))]
+        public void WhenPassedAValidGuidTheResultMustBeValid()
+        {
+            var validInput = new GetJobApplicationInput
+            {
+                Id = Guid.NewGuid(),
+            };
+
+            var validator = new GetJobApplicationValidator();
+            var result = validator.Validate(validInput);
+            result.Should().NotBeNull();
+            result.IsValid.Should().BeTrue();
+            result.Errors.Should().HaveCount(0);
+        }
     }
 }
