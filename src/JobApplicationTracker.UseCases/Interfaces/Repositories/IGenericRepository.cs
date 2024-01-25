@@ -12,6 +12,6 @@ namespace JobApplicationTracker.Application.Interfaces.Repositories
         Task<IEnumerable<TAggregate>> GetAllAsync();
         Task InsertAsync(TAggregate aggregate);
         Task UpdateAsync(TAggregate aggregate);
-        Task DeleteAsync(TAggregate aggregate);
+        Task DeleteAsync(Guid aggregateId);
     }
 }
