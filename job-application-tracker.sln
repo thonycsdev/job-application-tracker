@@ -7,11 +7,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{BDBB8174-DE2
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{04B79000-3249-4B20-A9CB-8F2AB0819F0C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobApplicationTracker.Tests", "tests\JobApplicationTracker.Tests\JobApplicationTracker.Tests.csproj", "{8120D8DF-FF35-4FB1-8E62-37899E551242}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JobApplicationTracker.Tests", "tests\JobApplicationTracker.Tests\JobApplicationTracker.Tests.csproj", "{8120D8DF-FF35-4FB1-8E62-37899E551242}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobApplicationTracker.Domain", "src\JobApplicationTracker.Domain\JobApplicationTracker.Domain.csproj", "{58A8F319-FCD3-4324-B441-00211BECA290}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JobApplicationTracker.Domain", "src\JobApplicationTracker.Domain\JobApplicationTracker.Domain.csproj", "{58A8F319-FCD3-4324-B441-00211BECA290}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobApplicationTracker.Application", "src\JobApplicationTracker.UseCases\JobApplicationTracker.Application.csproj", "{86F7EDEB-5AB8-4C7B-9650-94CEB1301AEB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JobApplicationTracker.Application", "src\JobApplicationTracker.UseCases\JobApplicationTracker.Application.csproj", "{86F7EDEB-5AB8-4C7B-9650-94CEB1301AEB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobApplicationTracker.IntegrationTests", "tests\JobApplicationTracker.IntegrationTests\JobApplicationTracker.IntegrationTests.csproj", "{58F08077-A807-46FA-9E2E-77DC0B9F453E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobApplication.Infra.Data.EF", "src\JobApplication.Infra.Data.EF\JobApplication.Infra.Data.EF.csproj", "{99A423F8-D0D2-4663-9985-7DFB06ED27AD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,6 +35,14 @@ Global
 		{86F7EDEB-5AB8-4C7B-9650-94CEB1301AEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{86F7EDEB-5AB8-4C7B-9650-94CEB1301AEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{86F7EDEB-5AB8-4C7B-9650-94CEB1301AEB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58F08077-A807-46FA-9E2E-77DC0B9F453E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58F08077-A807-46FA-9E2E-77DC0B9F453E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58F08077-A807-46FA-9E2E-77DC0B9F453E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58F08077-A807-46FA-9E2E-77DC0B9F453E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99A423F8-D0D2-4663-9985-7DFB06ED27AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99A423F8-D0D2-4663-9985-7DFB06ED27AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99A423F8-D0D2-4663-9985-7DFB06ED27AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99A423F8-D0D2-4663-9985-7DFB06ED27AD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -39,6 +51,8 @@ Global
 		{8120D8DF-FF35-4FB1-8E62-37899E551242} = {04B79000-3249-4B20-A9CB-8F2AB0819F0C}
 		{58A8F319-FCD3-4324-B441-00211BECA290} = {BDBB8174-DE2A-4E71-96E3-B5D37F824748}
 		{86F7EDEB-5AB8-4C7B-9650-94CEB1301AEB} = {BDBB8174-DE2A-4E71-96E3-B5D37F824748}
+		{58F08077-A807-46FA-9E2E-77DC0B9F453E} = {04B79000-3249-4B20-A9CB-8F2AB0819F0C}
+		{99A423F8-D0D2-4663-9985-7DFB06ED27AD} = {BDBB8174-DE2A-4E71-96E3-B5D37F824748}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {53914A41-106E-4E1B-B398-1B04C489B7CF}

@@ -1,5 +1,4 @@
 ﻿using JobApplicationTracker.Application.UseCases.JobApplications.Common;
-using JobApplicationTracker.Application.UseCases.JobApplications.CreateJobApplication;
 using JobApplicationTracker.Domain.Entity;
 
 namespace JobApplicationTracker.Application.Builders.JobApplicationDTOBuilders

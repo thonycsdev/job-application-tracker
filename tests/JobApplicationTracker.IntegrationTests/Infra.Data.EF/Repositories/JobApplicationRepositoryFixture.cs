@@ -1,16 +1,20 @@
-﻿using JobApplicationTracker.Application.Interfaces.Repositories;
-using JobApplicationTracker.Application.Interfaces.UseCases;
-using JobApplicationTracker.Tests.Common;
-using Moq;
+﻿using JobApplication.Infra.Data.EF;
+using JobApplicationTracker.IntegrationTests.Common;
+using Microsoft.EntityFrameworkCore;
 using DomainEntity = JobApplicationTracker.Domain.Entity;
-namespace JobApplicationTracker.Tests.Entity.JobApplication
+
+
+namespace JobApplicationTracker.IntegrationTests.Infra.Data.EF.Repositories
 {
-    public class JobApplicationFixture : BaseFixture
+    [CollectionDefinition(nameof(JobApplicationRepositoryFixture))]
+    public class JobApplicationRepositoryFixtureCollection : ICollectionFixture<JobApplicationRepositoryFixture>
     {
-        public JobApplicationFixture() : base()
+    }
+    public class JobApplicationRepositoryFixture : BaseFixture
+    {
+        public JobApplicationRepositoryFixture() : base()
         {
-            RepositoryMock = new Mock<IJobApplicationRepository>();
-            UnitOfWorkMock = new Mock<IUnitOfWork>();
+
         }
 
         public DomainEntity.JobApplication CreateValidJobApplication()
@@ -33,19 +37,16 @@ namespace JobApplicationTracker.Tests.Entity.JobApplication
                 );
             return entity;
         }
-        public Mock<IJobApplicationRepository> RepositoryMock { get; private set; }
-        public Mock<IUnitOfWork> UnitOfWorkMock { get; private set; }
         public string CreateValidJobApplicationName() => Faker.Name.JobTitle();
         public string CreateValidJobApplicationDescription() => Faker.Lorem.Paragraph();
         public string CreateValidJobApplicationCompany() => Faker.Company.CompanyName();
         public string CreateValidJobApplicationLocation() => Faker.Address.City();
         public string CreateValidJobApplicationNotes() => Faker.Lorem.Paragraph();
-
-    }
-
-    [CollectionDefinition(nameof(JobApplicationFixtureCollection))]
-    public class JobApplicationFixtureCollection : ICollectionFixture<JobApplicationFixture>
-    {
-
+        public JobApplicationDbContext GetInMemoryDbContext()
+        {
+            var dbContextOptions = new DbContextOptionsBuilder<JobApplicationDbContext>().UseInMemoryDatabase("integration-test-db").Options;
+            var dbContext = new JobApplicationDbContext(dbContextOptions);
+            return dbContext;
+        }
     }
 }

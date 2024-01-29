@@ -1,10 +1,5 @@
 ﻿using JobApplicationTracker.Domain.Enums;
 using JobApplicationTracker.Domain.Exceptions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace JobApplicationTracker.Domain.Entity
 {
@@ -46,6 +41,17 @@ namespace JobApplicationTracker.Domain.Entity
             if (string.IsNullOrWhiteSpace(Location))
                 throw new DomainEntityException("Location is required");
 
+        }
+
+        public void Update(JobApplication jobApplicationNewData)
+        {
+            this.Company = jobApplicationNewData.Company;
+            this.Description = jobApplicationNewData.Description;
+            this.Location = jobApplicationNewData.Location;
+            this.Name = jobApplicationNewData.Name;
+            this.Notes = jobApplicationNewData.Notes;
+            this.Status = jobApplicationNewData.Status;
+            this.DateUpdated = DateTime.Now;
         }
     }
 }

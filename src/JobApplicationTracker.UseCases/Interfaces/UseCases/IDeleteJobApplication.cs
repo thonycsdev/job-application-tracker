@@ -1,11 +1,5 @@
 ﻿using JobApplicationTracker.Application.UseCases.JobApplications.DeleteJobApplication;
-using JobApplicationTracker.Application.UseCases.JobApplications.GetJobApplication;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace JobApplicationTracker.Application.Interfaces.UseCases
 {

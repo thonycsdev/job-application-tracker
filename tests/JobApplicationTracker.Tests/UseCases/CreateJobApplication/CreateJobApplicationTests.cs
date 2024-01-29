@@ -1,10 +1,9 @@
-﻿using JobApplicationTracker.Tests.Entity.JobApplication;
-using Moq;
-using FluentAssertions;
-using JobApplicationTracker.Domain.Entity;
+﻿using FluentAssertions;
 using JobApplicationTracker.Application.Interfaces.Repositories;
 using JobApplicationTracker.Application.Interfaces.UseCases;
-using JobApplicationTracker.Application.UseCases.JobApplications.Common;
+using JobApplicationTracker.Domain.Entity;
+using JobApplicationTracker.Tests.Entity.JobApplication;
+using Moq;
 using JobApplicationUseCase = JobApplicationTracker.Application.UseCases.JobApplications.CreateJobApplication;
 
 namespace JobApplicationTracker.Tests.UseCases.CreateJobApplication
@@ -14,7 +13,7 @@ namespace JobApplicationTracker.Tests.UseCases.CreateJobApplication
     {
         private readonly JobApplicationFixture _jobApplicationFixture;
         public CreateJobApplicationTests(JobApplicationFixture jobApplicationFixture) => _jobApplicationFixture = jobApplicationFixture;
-        
+
         [Fact(DisplayName = nameof(CreateJobApplication))]
         public async void CreateJobApplication()
         {

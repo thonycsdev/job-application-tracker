@@ -3,15 +3,8 @@ using JobApplicationTracker.Application.Exceptions;
 using JobApplicationTracker.Application.Interfaces.Repositories;
 using JobApplicationTracker.Application.Interfaces.UseCases;
 using JobApplicationTracker.Application.UseCases.JobApplications.GetJobApplication;
-using JobApplicationTracker.Domain.Entity;
-using JobApplicationTracker.Domain.Exceptions;
 using JobApplicationTracker.Tests.Entity.JobApplication;
 using Moq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace JobApplicationTracker.Tests.UseCases.GetCategory
 {
@@ -34,7 +27,7 @@ namespace JobApplicationTracker.Tests.UseCases.GetCategory
             repositoryMock.Setup(x => x.GetByIdAsync(It.IsAny<Guid>())).ReturnsAsync(dummyData);
 
             var input = new GetJobApplicationInput();
-            var result = await useCase.Handle(input,CancellationToken.None);
+            var result = await useCase.Handle(input, CancellationToken.None);
 
             result.Should().NotBeNull();
             result.Id.Should().NotBe(Guid.Empty);

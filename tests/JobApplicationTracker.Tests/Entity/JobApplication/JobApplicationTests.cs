@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FluentAssertions;
+﻿using FluentAssertions;
 using JobApplicationTracker.Domain.Enums;
 using JobApplicationTracker.Domain.Exceptions;
 using DomainEntity = JobApplicationTracker.Domain.Entity;
@@ -28,7 +23,7 @@ namespace JobApplicationTracker.Tests.Entity.JobApplication
             };
 
             var jobApplication = new DomainEntity.JobApplication(jobApplicationData.Name, jobApplicationData.Description, jobApplicationData.Company, jobApplicationData.Location, jobApplicationData.Notes);
-            
+
             jobApplication.Id.Should().NotBe(Guid.Empty);
             jobApplication.Name.Should().Be(jobApplicationData.Name);
             jobApplication.Description.Should().Be(jobApplicationData.Description);
@@ -115,6 +110,25 @@ namespace JobApplicationTracker.Tests.Entity.JobApplication
 
             Action action = () => new DomainEntity.JobApplication(jobApplicationData.Name, jobApplicationData.Description, jobApplicationData.Company, jobApplicationData.Location, jobApplicationData.Notes);
             action.Should().Throw<DomainEntityException>().WithMessage("Location is required");
+        }
+
+        [Fact(DisplayName = nameof(ThrowError_WhenLocation_IsInvalid))]
+        public void UpdateInformation()
+        {
+            var jobApplication = _jobApplicationFixture.CreateValidJobApplication();
+
+            var jobApplicationNewData = _jobApplicationFixture.CreateValidJobApplication();
+
+            jobApplication.Update(jobApplicationNewData);
+
+            jobApplication.Name.Should().Be(jobApplicationNewData.Name);
+            jobApplication.Description.Should().Be(jobApplicationNewData.Description);
+            jobApplication.Company.Should().Be(jobApplicationNewData.Company);
+            jobApplication.Location.Should().Be(jobApplicationNewData.Location);
+            jobApplication.Notes.Should().Be(jobApplicationNewData.Notes);
+            jobApplication.DateUpdated.Should().NotBe(DateTime.MinValue);
+            jobApplication.DateUpdated.Should().BeSameDateAs(DateTime.Now);
+
         }
     }
 }

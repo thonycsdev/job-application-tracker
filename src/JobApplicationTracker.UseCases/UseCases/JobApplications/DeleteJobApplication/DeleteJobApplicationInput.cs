@@ -5,6 +5,6 @@ namespace JobApplicationTracker.Application.UseCases.JobApplications.DeleteJobAp
 {
     public class DeleteJobApplicationInput : IRequest<DeleteJobApplicationOutput>
     {
-        public Guid Id { get; set;}
+        public Guid Id { get; set; }
     }
 }

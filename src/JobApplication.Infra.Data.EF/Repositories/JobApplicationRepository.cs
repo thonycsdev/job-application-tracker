@@ -1,0 +1,45 @@
+﻿using JobApplicationTracker.Application.Interfaces.Repositories;
+using Microsoft.EntityFrameworkCore;
+using DomainEntity = JobApplicationTracker.Domain.Entity;
+
+namespace JobApplication.Infra.Data.EF.Repositories
+{
+    public class JobApplicationRepository : IJobApplicationRepository
+    {
+        private readonly DbSet<DomainEntity.JobApplication> _jobApplications;
+        private readonly JobApplicationDbContext _dbContext;
+        public JobApplicationRepository(JobApplicationDbContext applicationDbContext)
+        {
+            _jobApplications = applicationDbContext.Set<DomainEntity.JobApplication>();
+            _dbContext = applicationDbContext;
+            
+        }
+        public Task DeleteAsync(Guid aggregateId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<IEnumerable<DomainEntity.JobApplication>> GetAllAsync()
+        {
+            var results = await _jobApplications.ToListAsync();
+            return results;
+        }
+
+        public async Task<DomainEntity.JobApplication> GetByIdAsync(Guid id)
+        {
+            var result = await _jobApplications.FindAsync(id) ?? throw new AggregateException($"Job Application not found with this id: {id}");
+            return result;
+        }
+
+        public async Task InsertAsync(DomainEntity.JobApplication aggregate)
+        {
+            await _jobApplications.AddAsync(aggregate);
+            await _dbContext.SaveChangesAsync();
+        }
+
+        public Task UpdateAsync(DomainEntity.JobApplication aggregate)
+        {
+            throw new NotImplementedException();
+        }
+    }
+}

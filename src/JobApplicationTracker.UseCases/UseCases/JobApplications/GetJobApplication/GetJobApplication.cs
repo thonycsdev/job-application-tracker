@@ -2,7 +2,6 @@
 using JobApplicationTracker.Application.Interfaces.Repositories;
 using JobApplicationTracker.Application.Interfaces.UseCases;
 using JobApplicationTracker.Application.UseCases.JobApplications.Common;
-using JobApplicationTracker.Application.UseCases.JobApplications.CreateJobApplication;
 
 namespace JobApplicationTracker.Application.UseCases.JobApplications.GetJobApplication
 {
