@@ -15,7 +15,8 @@ namespace JobApplicationTracker.Application.UseCases.JobApplications.DeleteJobAp
         }
         public async Task<DeleteJobApplicationOutput> Handle(DeleteJobApplicationInput request, CancellationToken cancellationToken)
         {
-            await _jobApplicationRepository.DeleteAsync(request.Id);
+            var jobApplication = await _jobApplicationRepository.GetByIdAsync(request.Id);
+            await _jobApplicationRepository.DeleteAsync(jobApplication);
             await _unitOfWork.Commit(cancellationToken);
             return new DeleteJobApplicationOutput { OperationWasSuccessful = true };
         }
