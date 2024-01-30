@@ -15,12 +15,12 @@ namespace JobApplication.Infra.Data.EF
             modelBuilder.ApplyConfiguration(new JobApplicationConfiguration());
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            string connString = "Host=db;Username=postgres;Password=postgres;Database=JobApplicationTracker";
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    string connString = "Host=db;Username=postgres;Password=postgres;Database=JobApplicationTracker";
 
-            optionsBuilder.UseNpgsql(connString);
-        }
+        //    optionsBuilder.UseNpgsql(connString);
+        //}
 
     }
 }
