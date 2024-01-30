@@ -117,7 +117,7 @@ namespace JobApplicationTracker.IntegrationTests.Infra.Data.EF.Repositories
             var repository = new JobApplicationRepository(_dbContext);
             var jobApplicationFromDb = await _jobApplications.FindAsync(jobApplication.Id);
 
-            await repository.DeleteAsync(jobApplicationFromDb!.Id);
+            await repository.DeleteAsync(jobApplicationFromDb!);
 
             var jobApplicationDeletedFromDb = await _jobApplications.FindAsync(jobApplication.Id);
 

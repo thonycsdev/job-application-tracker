@@ -6,6 +6,6 @@
         Task<IEnumerable<TAggregate>> GetAllAsync();
         Task InsertAsync(TAggregate aggregate);
         Task UpdateAsync(TAggregate aggregate);
-        Task DeleteAsync(Guid aggregateId);
+        Task DeleteAsync(TAggregate aggregate);
     }
 }

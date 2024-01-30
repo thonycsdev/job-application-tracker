@@ -14,10 +14,9 @@ namespace JobApplication.Infra.Data.EF.Repositories
             _dbContext = applicationDbContext;
             
         }
-        public async Task DeleteAsync(Guid aggregateId)
+        public async Task DeleteAsync(DomainEntity.JobApplication jobApplication)
         {
-            var result = await GetByIdAsync(aggregateId);
-            _jobApplications.Remove(result);
+            _jobApplications.Remove(jobApplication);
             await _dbContext.SaveChangesAsync();
         }
 
