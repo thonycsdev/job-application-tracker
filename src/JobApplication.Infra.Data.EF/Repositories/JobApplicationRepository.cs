@@ -14,9 +14,11 @@ namespace JobApplication.Infra.Data.EF.Repositories
             _dbContext = applicationDbContext;
             
         }
-        public Task DeleteAsync(Guid aggregateId)
+        public async Task DeleteAsync(Guid aggregateId)
         {
-            throw new NotImplementedException();
+            var result = await GetByIdAsync(aggregateId);
+            _jobApplications.Remove(result);
+            await _dbContext.SaveChangesAsync();
         }
 
         public async Task<IEnumerable<DomainEntity.JobApplication>> GetAllAsync()
@@ -37,9 +39,10 @@ namespace JobApplication.Infra.Data.EF.Repositories
             await _dbContext.SaveChangesAsync();
         }
 
-        public Task UpdateAsync(DomainEntity.JobApplication aggregate)
+        public async Task UpdateAsync(DomainEntity.JobApplication aggregate)
         {
-            throw new NotImplementedException();
+            _jobApplications.Update(aggregate);
+            await _dbContext.SaveChangesAsync();
         }
     }
 }

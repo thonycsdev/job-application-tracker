@@ -72,5 +72,56 @@ namespace JobApplicationTracker.IntegrationTests.Infra.Data.EF.Repositories
             jobApplicationsFromDb.Should().NotBeNull();
             jobApplicationsFromDb.Should().HaveCount(100);
         }
+
+        [Fact(DisplayName = nameof(UpdateJobApplication))]
+        public async void UpdateJobApplication()
+        {
+            var jobApplicationUpdate = _fixture.CreateValidJobApplication();
+            var jobApplication = _fixture.CreateValidJobApplication();
+            var defaultDateUpdate = jobApplication.DateUpdated;
+            _jobApplications.Add(jobApplication);
+            await _dbContext.SaveChangesAsync();
+
+            var repository = new JobApplicationRepository(_dbContext);
+            var jobApplicationFromDb = await repository.GetByIdAsync(jobApplication.Id);
+            jobApplicationFromDb.Update(jobApplicationUpdate);
+            await repository.UpdateAsync(jobApplicationFromDb);
+
+            var jobApplicationUpdatedFromDb = await repository.GetByIdAsync(jobApplication.Id);
+
+            jobApplicationUpdatedFromDb.Should().NotBeNull();
+            jobApplicationUpdatedFromDb.Id.Should().Be(jobApplication.Id);
+
+            jobApplicationUpdatedFromDb.Name.Should().Be(jobApplicationUpdate.Name);
+            jobApplicationUpdatedFromDb.Description.Should().Be(jobApplicationUpdate.Description);
+            jobApplicationUpdatedFromDb.Company.Should().Be(jobApplicationUpdate.Company);
+            jobApplicationUpdatedFromDb.Location.Should().Be(jobApplicationUpdate.Location);
+            jobApplicationUpdatedFromDb.Notes.Should().Be(jobApplicationUpdate.Notes);
+            jobApplicationUpdatedFromDb.Status.Should().Be(jobApplicationUpdate.Status);
+            
+            jobApplicationUpdatedFromDb.DateApplied.Should().Be(jobApplication.DateApplied);
+            
+            jobApplicationUpdatedFromDb.DateUpdated.Should().BeAfter(defaultDateUpdate);
+            jobApplicationUpdatedFromDb.DateUpdated.Should().BeAfter(jobApplication.DateApplied);
+
+
+        }
+
+        [Fact(DisplayName = nameof(DeleteJobApplication))]
+        public async void DeleteJobApplication()
+        {
+            var jobApplication = _fixture.CreateValidJobApplication();
+            await _jobApplications.AddAsync(jobApplication);
+            await  _dbContext.SaveChangesAsync();
+
+            var repository = new JobApplicationRepository(_dbContext);
+            var jobApplicationFromDb = await _jobApplications.FindAsync(jobApplication.Id);
+
+            await repository.DeleteAsync(jobApplicationFromDb!.Id);
+
+            var jobApplicationDeletedFromDb = await _jobApplications.FindAsync(jobApplication.Id);
+
+            jobApplicationDeletedFromDb.Should().BeNull();
+        }
     }
 }
